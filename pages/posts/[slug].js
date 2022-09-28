@@ -1,116 +1,98 @@
 import React from "react";
-import Link from "next/link";
+import Navbar from "../../components/Navbar";
+import Widgetfollows from "../../components/Widgetfollows";
+import Widgetweather from "../../components/Widgetweather";
+import Widgettabulations from "../../components/Widgettabulations";
+import Footer from "../../components/Footer";
+import WidgetMostV from "../../components/WidgetMostV";
+import WidgetNewsletter from "../../components/WidgetNewsletter";
+import Widgetcategories from "../../components/Widgetcategories";
 import Head from "next/head";
-import Navbar from "../components/Navbar";
-import Slide from "../components/Slide";
-import Trending from "../components/Trending";
-import Sport from "../components/Sport";
-import Monde from "../components/Monde";
-import LifeStyle from "../components/LifeStyle";
-import Footer from "../components/Footer";
-import Videos from "../components/Videos";
-import News from "../components/News";
-import Widgetfollows from "../components/Widgetfollows"
-import Widgetweather from "../components/Widgetweather";
-//import Widgettabulations from "../components/Widgettabulations";
-import Technologie from "../components/Technology";
-import WidgetNewsletter from "../components/WidgetNewsletter";
-import WidgetMostV from "../components/WidgetMostV";
-import SlideVideo from "../components/SlideVideo";
-import Widgetcategories from "../components/Widgetcategories";
-import Image from 'next/image'
-import Essai from "../components/essai";
+import Link from "next/link";
+import Image from "next/image";
 
-export default function Index() {
-
-
+export default function Post({ post }) {
   return (
     <>
       <Head>
         <meta httpEquiv="Content-Type" content="text/html; charset=UTF-8" />
-        <title>My App Jannah</title>
+        <title>{post?.title}</title>
         <link
           rel="stylesheet"
           id="taqyeem-buttons-style-css"
-          href="css/style.css"
+          href="/css/style.css"
           type="text/css"
           media="all"
         />
         <link
           rel="stylesheet"
           id="tie-css-base-css"
-          href="css/base.css"
+          href="/css/base.css"
           type="text/css"
           media="all"
         />
         <link
           rel="stylesheet"
           id="tie-css-styles-css"
-          href="css/style.min.css"
+          href="/css/style.min.css"
           type="text/css"
           media="all"
         />
         <link
           rel="stylesheet"
           id="tie-css-widgets-css"
-          href="css/widgets.min.css"
+          href="/css/widgets.min.css"
           type="text/css"
           media="all"
         />
         <link
           rel="stylesheet"
           id="tie-css-helpers-css"
-          href="fonts/helpers.min.css"
+          href="/fonts/helpers.min.css"
           type="text/css"
           media="all"
         />
         <link
           rel="stylesheet"
           id="tie-fontawesome5-css"
-          href="fonts/fontawesome.css"
+          href="/fonts/fontawesome.css"
           type="text/css"
           media="all"
         />
         <link
           rel="stylesheet"
           id="tie-css-ilightbox-css"
-          href="css/skin.css"
+          href="/css/skin.css"
           type="text/css"
           media="all"
         />
         <link
           rel="stylesheet"
           id="tie-css-shortcodes-css"
-          href="css/shortcodes.min.css"
+          href="/css/shortcodes.min.css"
           type="text/css"
           media="all"
         />
         <link
           rel="stylesheet"
           id="taqyeem-styles-css"
-          href="css/taqyeem.min.css"
+          href="/css/taqyeem.min.css"
           type="text/css"
           media="all"
         />
         <link
           rel="stylesheet"
           id="dashicons-css"
-          href="fonts/dashicons.css"
+          href="/fonts/dashicons.css"
           type="text/css"
           media="all"
         />
-      
-           
-         
-       
+
         <meta name="description" content="  version clean" />
         <meta name="theme-color" content="#0088ff" />
         <link rel="stylesheet" href="css/typo.css" media="all" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-        
       </Head>
-      
       <div className="background-overlay">
         <div id="tie-container" className="site tie-container">
           <div id="tie-wrapper">
@@ -118,9 +100,7 @@ export default function Index() {
 
             <Navbar />
             {/* BK-end-bloc-header*/}
-            {/* BK-bloc-start-slide*/}
-            <Slide />
-            {/* BK-bloc-end-slide */}
+
             <div
               id="tiepost-1020-section-749"
               className="section-wrapper container normal-width without-background"
@@ -136,10 +116,22 @@ export default function Index() {
                       role="main"
                     >
                       {/* BK-bloc-start-Trending News */}
-                      <Trending />
+                      <div>
+                        <h1>{post?.title}</h1>
+                        {post?.featuredImage?.node?.sourceUrl && (
+                        <Image
+                          width={1024}
+                          height={683}
+                          src={post?.featuredImage?.node?.sourceUrl}
+                        />
+                        )}
+                        <article
+                          dangerouslySetInnerHTML={{ __html: post?.content }}
+                        ></article>
+                      </div>
                       {/* .mag-box /*
                       {/* BK-bloc-start-sports */}
-                      <Sport />
+
                       {/* .mag-box /*/}
                       {/* BK-bloc-start-Racing */}
                       <div
@@ -147,7 +139,6 @@ export default function Index() {
                         className="mag-box tie-col-sm-6 half-box has-first-big-post has-custom-color first-half-box"
                         data-current={1}
                       >
-                        <Monde/>
                         {/* .container-wrapper /*/}
                       </div>
                       {/* .mag-box /*/}
@@ -159,7 +150,6 @@ export default function Index() {
                         className="mag-box tie-col-sm-6 half-box has-first-big-post has-custom-color second-half-box"
                         data-current={1}
                       >
-                        <LifeStyle />
                         {/* .container-wrapper /*/}
                       </div>
                       {/* .mag-box /*/}
@@ -187,26 +177,25 @@ export default function Index() {
                           position: "static",
                           transform: "none",
                         }}
-                      > 
-                      {/* BK-end-bloc-start-followus */}
-                      
-                       <Widgetfollows/>
+                      >
+                        {/* BK-end-bloc-start-followus */}
+
+                        <Widgetfollows />
                         {/* BK-end-bloc-end-followus */}
                         {/* BK-bloc-start-widget*/}
                         {/* .widget /*/}
-                         {/* BK-bloc-start-widgetweather*/}
-                      <Widgetweather/>
-                         {/* BK-bloc-end-widgetweather*/}                     
+                        {/* BK-bloc-start-widgetweather*/}
+                        <Widgetweather />
+                        {/* BK-bloc-end-widgetweather*/}
                         {/* .widget /*/}
                         {/* BK-bloc-start-widget-recents*/}
-                        {/* <Widgettabulations/> */}
-                        <Essai/>
+                        <Widgettabulations />
                         {/* BK-bloc-end-widget-recents*/}
                         {/* .container-wrapper /*/}
                       </div>
                       {/* .theiaStickySidebar /*/}
                     </aside>
-                     {/* BK-bloc-end-aside */}
+                    {/* BK-bloc-end-aside */}
                     {/* .sidebar /*/}
                   </div>
                   {/* .main-content-row */}
@@ -217,7 +206,7 @@ export default function Index() {
             </div>
             {/* .tiepost-1020-section-749 /*/}
             {/* BK-bloc-start-slideVideo */}
-          <SlideVideo/>
+
             {/* .tiepost-1020-section-8509 /*/}
             {/* BK-bloc-end-slideVideo */}
 
@@ -235,14 +224,13 @@ export default function Index() {
                       className="main-content tie-col-md-8 tie-col-xs-12"
                       role="main"
                     >
-                      
-            {/* BK-bloc-start-Technology */}
-                      <Technologie/>
+                      {/* BK-bloc-start-Technology */}
+
                       {/* BK-bloc-end-Technology */}
                       {/* .mag-box /*/}
 
-                         {/* BK-bloc-vidéo*/}
-                      <Videos />
+                      {/* BK-bloc-vidéo*/}
+
                       {/* BK-end-bloc-vidéo*/}
                       {/* .mag-box /*/}
                       {/*
@@ -255,7 +243,7 @@ export default function Index() {
                       >
                         <div className="container-wrapper">
                           <a href="#" title="" target="_blank">
-                            <Image                              
+                            <Image
                               src="/images/1.jpg"
                               alt=""
                               width={728}
@@ -268,7 +256,7 @@ export default function Index() {
                       {/* .mag-box /*/}
                       {/* BK-end-bannere-publicitaire*/}
                       {/* BK-section- what's new*/}
-                     <News/>
+
                       {/* BK-end-section- what's new*/}
                       {/* .mag-box /*/}
                     </div>
@@ -294,15 +282,15 @@ export default function Index() {
                         }}
                       >
                         {/* bk-widget-mostView /*/}
-                       <WidgetMostV/>
+                        <WidgetMostV />
                         {/* .widget /*/}
                       </div>
                       {/* bk-widget newsletter /*/}
-                    <WidgetNewsletter/>
+                      <WidgetNewsletter />
                       {/* bk-end-widget newsletter /*/}
                       {/* .widget /*/}
                       {/* bk-widget-categorie /*/}
-                     <Widgetcategories/>
+                      <Widgetcategories />
                       {/* bk-end-widget-categorie /*/}
                       {/* .widget /*/}
                     </aside>
@@ -314,11 +302,10 @@ export default function Index() {
               </div>
               {/* .container /*/}
             </div>
-            
-           
+
             {/* .section-item /*/}
           </div>
-           
+
           {/* .tiepost-1020-section-6559 /*/}
           {/* BK-footer */}
           <Footer />
@@ -339,7 +326,76 @@ export default function Index() {
         </div>
         {/* #tie-wrapper /*/}
       </div>
-      {/* <script src="https://unpkg.com/typewriter-effect@latest/dist/core.js"></script> */}
     </>
   );
+}
+
+export async function getStaticProps(context) {
+  const res = await fetch("http://localhost/jannah/graphql", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      query: `
+                query SinglePost($id: ID!, $idType: PostIdType!) {
+                    post(id: $id, idType: $idType) {
+                        title
+                        slug
+                        content
+                        featuredImage {
+                            node {
+                                sourceUrl
+                            }
+                        }
+                    }
+                }
+            `,
+      variables: {
+        id: context.params.slug,
+        idType: "SLUG",
+      },
+    }),
+  });
+
+  const json = await res.json();
+  console.log(json);
+
+  return {
+    props: {
+      post: json.data.post,
+    },
+    revalidate: 60,
+  };
+}
+
+export async function getStaticPaths() {
+  // const res = await fetch('http://localhost/jannah/graphql', {
+  //     method: 'POST',
+  //     headers: { 'Content-Type': 'application/json' },
+  //     body: JSON.stringify({
+  //         query: `
+  //         query AllPostsQuery {
+  //             posts {
+  //                 nodes {
+  //                     slug
+  //                     content
+  //                     title
+  //                     featuredImage {
+  //                         node {
+  //                             sourceUrl
+  //                         }
+  //                     }
+  //                 }
+  //             }
+  //         }
+  //     `})
+  // })
+
+  // const json = await res.json()
+  // const posts = json.data.posts.nodes;
+
+  // const paths = posts.map((post) => ({
+  //     params: { slug: post.slug },
+  // }))
+
+  return { paths: [], fallback: true };
 }
